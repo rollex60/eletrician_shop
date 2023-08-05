@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load electricity_blog_tags %}
+{% block title %}
+
+{% endblock %}
+{% block breadcrumb %}
+<section class="breadcrumb">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <div class="seo_block">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'blog' %}">
+                        Blog
+                    </a>
+                </li>
+                 {% if blog_selected %}
+                    <li class="breadcrumb-item active">
+                        {{ name }}
+                    </li>
+                {% endif %}
+            </div>
+        </ol>
+    </nav>
+
+</section>
+{% endblock %}
+{% block content %}
+<section class="blog">
+    <div class="blog-block">
+        <div class="blog-sidebar">
+            <div class="search__form__sidebar-blog">
+                <h3>Search</h3>
+                <div class="search__form">
+                    <form action="{% url 'search_resultsblog' %}" method="get">
+
+                        <input name="val" type="search" placeholder="Search" aria-label="Search">
+                        <button type="submit"></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="category_sidebar-blog">
+                <h3>Categories</h3>
+                <div class="blog-cat">
+                    {% if catblog_selected == 0 %}
+                    <li><a href="{% url 'blog' %}">All categories</a></li>
+                    {% endif %}
+                    {% show_categories blog_selected=blog_selected %}
+                    </div>
+                    </div>
+                <div class="category_sidebar-tags">
+                    <h3>Tags</h3>
+                    <div class="tages">
+                        {% for tag in tages.all %}
+                        <div class="tags-blog">
+                            <li class="scale">
+                                <a href="{% url 'tagg' tag.slug %}">
+                                        {{ tag.name }}
+                                </a>
+                            </li>
+                        </div>
+                        {% endfor %}
+                    </div>
+            </div>
+        </div>
+        <div class="blog-content">
+            <div class="list-blog">
+                {% for b in blog %}
+                <li class="article-panel">
+                    {% if b.photo %}
+                    <img class="img-article-left thumb" src="{{b.photo.url}}" alt="">
+                    {% endif %}
+                    <div class="article-block">
+                        <p class="last">{{b.time_update|date:"d M, Y"}}</p>
+                        <div class="tags-blog-content">
+                            <p>Tags:</p>
+                            {% for tag in b.tages.all %}
+                                    <a href="{% url 'tagg' tag.slug %}">
+                                        {{ tag.name }}
+                                    </a>
+                            {% endfor %}
+                        </div>
+
+                        <h2><a class="article-title" href="{{ b.get_absolute_url }}">{{b.name}}</a></h2>
+
+                        <div class="article-content">
+                            {% autoescape on %}
+                            {{ b.main_content|safe|linebreaks|truncatewords:31 }}
+                            {% endautoescape %}
+                        </div>
+                        <div class="clear"></div>
+                        <button class="link-read-post"><a href="{{ b.get_absolute_url }}"><i class="fa fa-bolt"
+                                                                                             aria-hidden="true"></i>Read
+                            post</a></button>
+                    </div>
+                </li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+<div class="list-pages-blog">
+{% include 'paginator.html' %}
+</div>
+{% endblock %}

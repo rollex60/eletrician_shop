@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb" style="margin-bottom: 6rem">
+    <ol class="breadcrumb">
+        <div class="seo_block">
+            <li class="breadcrumb-item">
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'shop' %}">
+                    Shop
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'account' %}">
+                    Account
+                </a>
+            </li>
+        </div>
+    </ol>
+</nav>
+
+
+{% include 'shop/topside.html' %}
+<h3 class="text-center cart-title" style="margin-top: 3rem">Personal area</h3>
+<hr>
+
+
+<div class="row">
+    <div class="col-12" style="display: flex;margin: 0 auto;width: 96rem;height: 80rem;">
+    <div class="col-md-6 my-4" style="z-index: 99; margin-top: 3.5rem !important;">
+        <div class="bg-white">
+            <div class="card-body">
+                <canvas id="myChart1" width="500" height="300"></canvas>
+                <script>
+                    var ctx = document.getElementById('myChart1').getContext('2d');
+                    var myChart1 = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: [{% for shop in shop %} '{{shop.name}}', {% endfor %}],
+                    datasets: [{
+                        label: 'Number of Products',
+                        data: [{% for shop in shop %} {{ shop.stock }}, {% endfor %}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                                borderWidth: 1
+                    }]
+                        },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="body_account" style="position: absolute;right: 0;display: flex;">
+        <div class="col-4">
+            <div class="list-group" id="list-tab" role="tablist" style="display: -webkit-box;">
+                <a class="list-group-item list-group-item-action active" id="list-orders-list" data-bs-toggle="list"
+                   href="#list-orders" role="tab" aria-controls="list-orders">Orders</a>
+                <a class="list-group-item list-group-item-action" id="list-wishlist-list" data-bs-toggle="list"
+                   href="#list-wishlist" role="tab" aria-controls="list-wishlist">Waiting list</a>
+            </div>
+        </div>
+        <div class="col-12" style="width: 50%">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-orders" role="tabpanel"
+                     aria-labelledby="list-orders-list">
+
+                    <table class="table bg-white">
+                        <thead class="bg-info text-white">
+                        <tr>
+                            <th scope="col" style="width: 5rem">Order number</th>
+                            <th scope="col" style="width: 5rem">Status</th>
+                            <th scope="col" style="width: 5rem">Sum</th>
+                            <th scope="col" style="width: 5rem">Details</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for order in customer.orders.all %}
+                        <tr>
+                            <th scope="row">{{ order.id }}</th>
+                            <td>{{ order.get_status_display }}</td>
+                            <td>{{ order.cart.final_price }} euro.</td>
+                            <td>
+                                <button type="button" class="button__cart"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#orderDetails-{{ order.id }}"><i class="fa fa-bolt"
+                                                                                         aria-hidden="true"></i>Order
+                                    details
+                                </button>
+                            </td>
+
+                            <div class="modal fade" id="orderDetails-{{ order.id }}" tabindex="-1"
+                                 aria-labelledby="orderDetailsLabel-{{ order.id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center" id="orderDetailsLabel-{{ order.id }}">
+                                                Information about order #{{ order.id }}
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+
+                                                <div class="col-md-3 text-center mb-2">
+                                                    <strong>Category/Name</strong>
+                                                </div>
+                                                <div class="col-md-3 text-center mb-2">
+                                                    <strong>Image</strong>
+                                                </div>
+                                                <div class="col-md-3 text-center mb-2">
+                                                    <strong>Quantity</strong>
+                                                </div>
+                                                <div class="col-md-3 text-center mb-2">
+                                                    <strong>Total price</strong>
+                                                </div>
+                                                <hr>
+                                                {% for item in order.cart.products.all %}
+                                                <div class="col-md-3 mb-3 text-center">
+                                                    <strong>
+                                                        <a href="{{ item.content_object.shop.get_absolute_url }}"
+                                                           class="text-decoration-none">
+                                                            {{ item.content_object.shop.name }}
+                                                        </a> - <a href="{{ item.content_object.get_absolute_url }}"
+                                                                  class="text-decoration-none">
+                                                        {{ item.content_object.name }}
+                                                    </a>
+                                                    </strong>
+
+                                                </div>
+                                                <div class="col-md-3 mb-3 text-center">
+                                                    <img src="{{ item.content_object.photo.url }}" class="img-fluid">
+                                                </div>
+                                                <div class="col-md-3 mb-3 text-center">
+                                                    {{ item.qty }} pcs.
+                                                </div>
+                                                <div class="col-md-3 mb-3 text-center">
+                                                    {{ item.final_price }} euro.
+                                                </div>
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="list-wishlist" role="tabpanel" aria-labelledby="list-wishlist-list">
+
+                        <div class="customer__wishlist">
+                        {% for shop in customer.wishlist.all %}
+                        <div class="list-articles-shop">
+                            <li class="article-panel-shop">
+                            <div class="scale"><img src="{{ shop.photo.url }}"></div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title"><a href="{{ shop.get_absolute_url }}"
+                                                          class="text-decoration-none">
+                                    {{ shop.name }}
+                                </a></h5>
+                            </div>
+
+
+                                    <div class="stock_stock text-center">
+                                    Category: <a href="{{ shop.shop.get_absolute_url }}"><strong class="badge bg-dark">{{ shop.shop }}</strong></a>
+                                        </div>
+
+
+                                    <div class="stock_stock text-center">Availability: {% if shop.stock %}<strong class="badge bg-success">
+                                    Are available</strong>{% else %}
+                                    <strong class="badge bg-danger">Not available</strong>{% endif %}
+                                        </div>
+                                    <div class="price">${{shop.price}}</div>
+
+                                <div class="card-body text-center">
+                                    <a href="{% url 'remove_from_wishlist' shop_id=shop.id %}" class="btn btn-default">
+                                        <button class="button__added">
+                                   <i class="fas fa-star"></i>Remove</button></a>
+                        </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                        </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<h1>{{title}}</h1>
+{% endblock %}
+{% block breadcrumb %}
+<section class="breadcrumb">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <div class="seo_block">
+            <li class="breadcrumb-item">
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <a href="{% url 'services' %}">
+                    Services
+                </a>
+            </li>
+            {% if shop_selected %}
+            <li class="breadcrumb-item active">
+                {{ name }}
+            </li>
+            {% endif %}
+        </div>
+    </ol>
+</nav>
+</section>
+{% endblock %}
+{% block content %}
+ <!-- Slider Work -->
+<section class="slider__work">
+    <div class="block__work">
+        <div class="work-title">24/7 Electrician Services – Safe and Efficient</div>
+        <h3>We are a Full Service Electrical Contractor</h3>
+        <div class="body__slider">
+            <div class="slider1">
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="lamp"></div>
+                        <img src="{% static 'images/box02-img01.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Electrical Service</div>
+                        <p>Our installation services ensure that you get the right air conditioner.</p>
+                        <div class="more">More info<i class="fa fa-caret-right" aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="cctv"></div>
+                        <img src="{% static 'images/box02-img04.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Heating Service</div>
+                        <p>We offer energy efficient electric heat products and installations.</p>
+                        <div id="block__slider__more1" class="more">More info<i class="fa fa-caret-right"
+                                                                                aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="conditioning"></div>
+                        <img src="{% static 'images/box02-img03.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Air Conditioning</div>
+                        <p>Our installation services ensure that you get the right air conditioner.</p>
+                        <div id="block__slider__more2" class="more">More info<i class="fa fa-caret-right"
+                                                                                aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="electricalpanel"></div>
+                        <img class="cartinca" src="{% static 'images/box02-img05.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Security Systems</div>
+                        <p>Our installation services ensure that you get the right air conditioner.</p>
+                        <div id="block__slider__more3" class="more">More info<i class="fa fa-caret-right"
+                                                                                aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+            </div>
+
+            <div class="slider__6">
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="lamp"></div>
+                        <img src="{% static 'images/box02-img01.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Electrical Service</div>
+                        <p>Our installation services ensure that you get the right air conditioner.</p>
+                        <div class="more">More info<i class="fa fa-caret-right" aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="cctv"></div>
+                        <img src="{% static 'images/box02-img04.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Heating Service</div>
+                        <p>We offer energy efficient electric heat products and installations.</p>
+                        <div class="more">More info<i class="fa fa-caret-right" aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="conditioning"></div>
+                        <img src="{% static 'images/box02-img03.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Air Conditioning</div>
+                        <p>Our installation services ensure that you get the right air conditioner.</p>
+                        <div class="more">More info<i class="fa fa-caret-right" aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="electricalpanel"></div>
+                        <img class="cartinca" src="{% static 'images/box02-img05.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Security Systems</div>
+                        <p>Our installation services ensure that you get the right air conditioner.</p>
+                        <div class="more">More info<i class="fa fa-caret-right" aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

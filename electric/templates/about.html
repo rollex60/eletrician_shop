@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    About us
+{% endblock %}
+{% block breadcrumb %}
+<section class="breadcrumb">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <div class="seo_block">
+            <li class="breadcrumb-item">
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <a href="{% url 'about' %}">
+                    About
+                </a>
+            </li>
+            {% if shop_selected %}
+            <li class="breadcrumb-item active">
+                {{ name }}
+            </li>
+            {% endif %}
+        </div>
+    </ol>
+</nav>
+</section>
+{% endblock %}
+{% block content %}
+ <!-- About Us -->
+<section class="about__us">
+    <div class="about__services">
+        <div class="block__eletric">
+            <img class="aboutus__images1" src="{% static 'images/about/img01.jpg' %}" alt="">
+            <img class="aboutus__images2" src="{% static 'images/about/img02.jpg' %}" alt="">
+        </div>
+        <div class="block__service">
+            <span>About Us</span>
+            <div class="service-title">Outstanding Residential & Commercial Services</div>
+            <p>All of our services are backed by our 100% satisfaction guarantee. Our electricians can install
+                anything from new security lighting for your outdoors to a whole home generator that will keep your
+                appliances working during a power outage.</p>
+            <ul>
+                <li><i class="fa fa-check" aria-hidden="true"></i>Full-service electrical layout, design</li>
+                <li><i class="fa fa-check" aria-hidden="true"></i>Wiring and installation/upgrades</li>
+                <li><i class="fa fa-check" aria-hidden="true"></i>Emergency power solutions (generators)</li>
+                <li><i class="fa fa-check" aria-hidden="true"></i>Virtually any electrical needs you have – just
+                    ask!
+                </li>
+            </ul>
+            <div class="about__autor">
+                <img src="{% static 'images/about/img-02.jpg' %}" alt="">
+                <div class="autor__name">Mark Smith</div>
+                <div class="autor__text">Your own electrician</div>
+                <div class="autor__separation"></div>
+                <div class="autor__painting">
+                    <img src="{% static 'images/about/img-01.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Order Page{% endblock %}
+
+
+
+{% block content %}
+
+<h1>{{login.title}}</h1>
+
+<nav aria-label="breadcrumb" style="margin-bottom: 10.7rem;">
+    <ol class="breadcrumb">
+        <div class="seo_block">
+            <li class="breadcrumb-item">
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'access' %}">
+                    Access
+                </a>
+            </li>
+        </div>
+    </ol>
+</nav>
+{% include 'shop/topside.html' %}
+<h2 class="text-center cart-title" style="margin-top: 3rem">Access denied</h2>
+<hr>
+
+{% endblock content %}

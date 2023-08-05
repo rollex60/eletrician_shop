@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Customer Page{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<nav aria-label="breadcrumb" style="margin-bottom: 10.7rem">
+    <ol class="breadcrumb">
+        <div class="seo_block">
+            <li class="breadcrumb-item">
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'shop' %}">
+                    Shop
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'user-profile' %}">
+                    Profile
+                </a>
+            </li>
+        </div>
+    </ol>
+</nav>
+<div class="row my-4">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bginfo text-white">
+                Customer Detail Page
+            </div>
+            <div class="row p-3">
+                <div class="col-md-8">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ u_form|crispy }}
+                        {{ p_form|crispy }}
+                        <input class="btn btn-info" type="submit" value="Update">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

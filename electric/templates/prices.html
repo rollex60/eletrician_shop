@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<h1>{{title}}</h1>
+{% endblock %}
+{% block breadcrumb %}
+<section class="breadcrumb">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <div class="seo_block">
+            <li class="breadcrumb-item">
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <a href="{% url 'prices' %}">
+                    Prices
+                </a>
+            </li>
+            {% if shop_selected %}
+            <li class="breadcrumb-item active">
+                {{ name }}
+            </li>
+            {% endif %}
+        </div>
+    </ol>
+</nav>
+</section>
+{% endblock %}
+{% block content %}
+
+  <!-- Plans -->
+<section class="slider__plans-service">
+    <span>Save on the Service You Need</span>
+    <h3>Maintenance Plans</h3>
+    <div class="plan-deckriptions">With an electrical maintenance plan, you won’t find yourself in a panic wondering
+        who to call when you’re having problems with your electrical system.
+    </div>
+    <div class="plans">
+        <div class="slider__3">
+            <div class="movingplans">
+                <div class="caza"></div>
+                <div class="plans__block">
+                    <div class="plans-title"> Residential Service</div>
+                    <ul class="plans__clas">
+                        <li><i class="fa fa-check" aria-hidden="true">
+                        </i>Annual A/C inspection
+                        </li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Annual electrical inspection</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Design-Build Services</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Supply and install Sensor light</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Lighting Fixtures</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Replace hot plates</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Switchboard Upgrade</li>
+
+                        <li class="line"></li>
+                    </ul>
+                    <div class="preco"> $12.00</div>
+                    <a href="#" class="order">
+                        Order Now
+                    </a>
+                </div>
+            </div>
+            <div class="movingplans">
+                <div class="quadro"></div>
+                <div class="plans__block">
+                    <div class="plans-title"> Commercial Service</div>
+                    <ul class="plans__clas">
+                        <li><i class="fa fa-check" aria-hidden="true">
+                        </i>Indoor/outdoor Lighting Installation
+                        </li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Appliance & Fixture Installation</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Annual Electrical Inspection</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Ceiling Fan Installation</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>New & Replacement Wiring</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Surge Protection Maintenance</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>24-hour Response</li>
+
+                        <li class="line"></li>
+                    </ul>
+                    <div class="preco"> $89.00</div>
+                    <a href="#" class="order">
+                        Order Now
+                    </a>
+                </div>
+            </div>
+            <div class="movingplans">
+                <div class="postu"></div>
+                <div class="plans__block">
+                    <div class="plans-title"> Industrial Service</div>
+                    <ul class="plans__clas">
+                        <li><i class="fa fa-check" aria-hidden="true">
+                        </i>Annual A/C inspection
+                        </li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Annual electrical inspection</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Install new double power</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Retrofits and Upgrades</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Install double power outside</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Switchboard Upgrade</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Critical Installations</li>
+
+                        <li class="line"></li>
+                    </ul>
+                    <div class="preco"> $130.00</div>
+                    <a href="#" class="order">
+                        Order Now
+                    </a>
+                </div>
+            </div>
+            <div class="movingplans">
+                <div class="quadro"></div>
+                <div class="plans__block">
+                    <div class="plans-title"> Commercial Service</div>
+                    <ul class="plans__clas">
+                        <li><i class="fa fa-check" aria-hidden="true">
+
+                        </i>Indoor/outdoor Lighting Installation
+                        </li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Appliance & Fixture Installation</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Annual Electrical Inspection</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Ceiling Fan Installation</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>New & Replacement Wiring</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Surge Protection Maintenance</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>24-hour Response</li>
+
+                        <li class="line"></li>
+                    </ul>
+                    <div class="preco"> $89.00</div>
+                    <a href="#" class="order">
+                        Order Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

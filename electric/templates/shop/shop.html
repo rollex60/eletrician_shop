@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load electricity_tags %}
+{% block title %}
+
+{% endblock %}
+
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <div class="seo_block">
+            <li class="breadcrumb-item">
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item active">
+                <a href="{% url 'shop' %}">
+                    Shop
+                </a>
+            </li>
+
+            {% if shop_selected %}
+            <li class="breadcrumb-item active">
+                {{ name }}
+            </li>
+            {% endif %}
+        </div>
+    </ol>
+</nav>
+{% endblock %}
+
+{% block content %}
+<section class="shop">
+    <div class="shop-sidebar">
+        <div class="search__form-sidebar">
+            <h3>Search</h3>
+            <div class="search__form">
+                <form action="{% url 'search_results' %}" method="get">
+
+                    <input name="val" type="search" placeholder="Search" aria-label="Search">
+                    <button type="submit"></button>
+                </form>
+            </div>
+        </div>
+        <div class="col-4" style="flex: 0 0 auto;min-width: 109%;margin: 0 auto;margin-bottom: 1rem;min-height: 5rem;left: -12px;">
+                        <a class="text-decoration-none text-dark" href="{% url 'registration' %}">
+                            <div class="card my-card shadow">
+                                <div class="card-body text-center">
+                                    <h4>Supplier <i class="fas fa-shipping-fast"></i></h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+        <div class="category_sidebar">
+            <h3>Categories</h3>
+            <div class="shop-cat">
+                {% if shop_selected == 0 %}
+                <li class="selected">All categories</li>
+                {% else %}
+                <li><a href="{% url 'shop' %}">All categories</a></li>
+                {% endif %}
+                {% show_products shop_selected=shop_selected %}
+            </div>
+        </div>
+
+        <div class="sales">
+            <h3>Best sales</h3>
+            <a href="{{ month_bestseller.get_absolute_url }}">{{ month_bestseller.name}}</a>
+            <img src="{{ month_bestseller.photo.url }}" class="card-img-top">
+        </div>
+
+        <div class="products_sidebar">
+            <h3>Products</h3>
+            {% for el in news %}
+            <li class="products_panel">
+                {% if el.photo %}
+                <a href="{{ el.get_absolute_url }}"><img class="img-article-right thumb" src="{{el.photo.url}}"
+                                                         alt=""></a>
+                {% endif %}
+                <h2><a href="{{ el.get_absolute_url }}">{{el.name}}</a></h2>
+                <div class="products_price">${{el.price}}</div>
+            </li>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="shop-content">
+        <div class="list-articles-shop">
+            {% for s in shop %}
+            <li class="article-panel-shop">
+                {% if s.photo %}
+                <a href="{{ s.get_absolute_url }}">
+                    <div class="scale"><img src="{{s.photo.url}}"
+                                            alt=""></div>
+                </a>
+                {% endif %}
+                <h2><a href="{{ s.get_absolute_url }}">{{s.name}}</a></h2>
+                {% autoescape on %}
+                {% endautoescape %}
+                <div class="clear"></div>
+                <div class="price">${{s.price}}</div>
+                <div class="block_in_stock">
+                    <div class="stock_stock">{% if s.stock %} <strong class="badge bg-success">
+                        Are available - {{ s.stock }} pcs.
+                    </strong>
+                        {% else %}
+                        <strong>Not available</strong>{% endif %}
+                    </div>
+                </div>
+
+                <div class="card-body text-center">
+                    {% if request.user.is_authenticated %}
+                    {% if s.stock %}
+                    {% if s not in cart.products_in_cart %}
+                    <a href="{% url 'add_to_cart' ct_model=s.ct_model slug=s.slug %}" class="btn btn-default">
+                        <button href="{% url 'add_to_cart' ct_model=s.ct_model slug=s.slug %}" class="button__shop"><i
+                                class="fas fa-shopping-cart"
+                                aria-hidden="true"></i>Add to cart
+                        </button>
+                    </a>
+                    {% else %}
+                    <a href="#" class="btn btn-default" disabled="">
+                        <button href="#" class="button__added"><i class="fas fa-shopping-cart"
+                                                                  aria-hidden="true"></i>Added to cart
+                        </button>
+                    </a>
+                    {% endif %}
+                    {% else %}
+                    {% if s not in request.user.customer.wishlist.all %}
+                    <a href="{% url 'add_to_wishlist' shop_id=s.id %}" class="btn btn-default">
+                        <button href="{% url 'add_to_wishlist' shop_id=s.id %}" class="button__expected"><i
+                                class="fas fa-shopping-cart"
+                                aria-hidden="true"></i>Add to expected
+                        </button>
+                    </a>
+                    {% else %}
+                    <a href="#" class="btn btn-default" disabled="">
+                        <button class="button__expected"><i class="fas fa-shopping-cart"
+                                                            aria-hidden="true"></i>Added to expected
+                        </button>
+                    </a>
+                    {% endif %}
+                    {% endif %}
+                    {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-default" disabled="">
+                        <button href="#" class="button__added"><i class="fas fa-shopping-cart"
+                                                                  aria-hidden="true"></i>Login
+                        </button>
+                    </a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+</section>
+{% include 'paginator.html' %}
+{% endblock %}
+

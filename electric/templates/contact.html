@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}
+ {{ title }}
+{% endblock %}
+
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <div class="seo_block">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'home' %}">Home</a>
+                </li>
+                 <li class="breadcrumb-item active">
+                     <a href="{% url 'contact' %}">
+                       Contact
+                    </a>
+                </li>
+                </div>
+            </ol>
+        </nav>
+{% endblock %}
+{% block content %}
+<div class="block__contact">
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48419.963870233754!2d-73.944404!3d40.66851!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24416947c2109%3A0x82765c7404007886!2z0JHRgNGD0LrQu9C40L0sINCd0YzRji3QmdC-0YDQug!5e0!3m2!1sru!2sus!4v1659727987837!5m2!1sru!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+<!-- Contact -->
+<section class="contact__form">
+    <div class="contact__block">
+        <div class="contact__block-address">
+            <div class="contact__block-address-title"><i class="fa fa-map-marker" aria-hidden="true"></i>Address:</div>
+            <div class="contact__block-address-descriptions">
+                Electrician Company
+                8494 Signal Hill Road Manassas,
+                VA, 20110
+            </div>
+        </div>
+
+        <div class="contact__block-hours">
+            <div class="contact__block-hours-title"><i class="fa fa-clock-o" aria-hidden="true"></i></i>Work Hours:</div>
+            <div class="contact__block-hours-descriptions">
+                Mon-Fri 08:00 AM - 05:00 PM
+                Sat-Sun: Emergency only
+            </div>
+        </div>
+
+        <div class="contact__block-phone">
+            <div class="contact__block-phone-title"><i class="fa fa-phone" aria-hidden="true"></i>Phone Numbers:</div>
+            <div class="contact__block-phone-descriptions">
+                1 (800) 765-43-21 (Appointments)
+                1 (800) 765-43-22 (Office)
+            </div>
+        </div>
+    </div>
+
+    <span>Contact Form</span>
+    <div class="contact-title">Get In Touch with Us</div>
+    <div class="contact-descript">Are you stumped by a home wiring project or problem? Fill out the form with the details of your situation and we can come to your aid.</div>
+
+<forma>
+        <form action="{% url 'feedback_view' %}" method="post" id="contactform">
+            {% csrf_token %}
+            <div class="submit_group">
+                <div class="getform__name">
+                    <input name="name" placeholder="Your Name *">
+                </div>
+
+                <div class="getform__email">
+                    <input name="email" placeholder="Your e-mail *">
+                </div>
+
+                <div class="getform__phone">
+                    <input id="phone" name="phone" placeholder="Your phone *">
+                </div>
+
+                <div class="getform__date">
+                    <textarea id="comment" name="description" placeholder="Your comment" tabindex="4"></textarea>
+                </div>
+
+                <button type="submit" class="getform">
+                    <i class="fa fa-bolt" aria-hidden="true"></i>Get Service
+                </button>
+            </div>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                <p class="reviews">{{ message }}</p>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </form>
+    </forma>
+</section>
+    </div>
+{% endblock %}

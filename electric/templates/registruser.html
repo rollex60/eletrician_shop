@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <div class="seo_block">
+            <li class="breadcrumb-item">
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'registruser' %}">
+                    Registration
+                </a>
+            </li>
+        </div>
+    </ol>
+</nav>
+
+    <div class="row" style="margin-bottom: 200px; margin-top: 160px;">
+        <div class="col-md-6 offset-md-3">
+            <h3 class="text-center">Registration</h3>
+            <hr>
+            <div class="col-md-4" style="min-width: 100% !important;margin-bottom: 1rem;padding-left: 0;padding-right: 0;">
+                        <a class="text-decoration-none text-dark" href="{% url 'registration' %}">
+                            <div class="card my-card shadow">
+                                <div class="card-body text-center">
+                                    <h4>Supplier <i class="fas fa-shipping-fast"></i></h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+            <form action="{% url 'registruser' %}" method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="link__login"><p><i class="fa fa-bolt" aria-hidden="true"></i>Register</p></button>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock content %}

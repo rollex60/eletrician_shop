@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block title %}
+    About us
+{% endblock %}
+
+{% block breadcrumb %}
+<nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <div class="seo_block">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'home' %}">Home</a>
+                </li>
+                 <li class="breadcrumb-item active">
+                     <a href="{% url 'gallery' %}">
+                       Gallery
+                    </a>
+                </li>
+                </div>
+            </ol>
+        </nav>
+{% endblock %}
+{% block content %}
+<!-- Project -->
+<section class="all__project-gallery">
+    <span>Electrical Gallery</span>
+    <div class="project-title">Our Photo Gallery</div>
+    <div class="all__project-descript">You will really enjoy doing business with us! Fast, electrical estimates at a competitive price. We save you time and money. Interested? Check out our photos.</div>
+
+    <div id="mynavtabcontent">
+        {% for elg in electricalgallery %}
+        <input type="radio" name="content-toggle" id="all" class="active"> <label for="all" tabindex="1">All</label>
+        {% endfor %}
+        {% for h in heating %}
+        <input type="radio" name="content-toggle" id="residence" class="active"> <label for="residence"
+                                                                         tabindex="2">{{ h.name }}</label>
+        {% endfor %}
+        {% for a in aircond %}
+        <input type="radio" name="content-toggle" id="industria"> <label for="industria"
+                                                                         tabindex="3">{{ a.name }}</label>
+        {% endfor %}
+        {% for s in securitysystems %}
+        <input type="radio" name="content-toggle" id="office"> <label for="office" tabindex="4">{{ s.name }}</label>
+        {% endfor %}
+        {% for el in electrical %}
+        <input type="radio" name="content-toggle" id="object"> <label for="object"
+                                                                      tabindex="5">{{ el.name }}</label>
+        {% endfor %}
+    <div id="content">
+            <section class="pictures">
+                <div id="def">
+                    <ul>
+                        {% for elg in electricalgallery %}
+                            {% for item in elg.gallery.all %}
+                            <li>
+                            <a href="{{ item.image.url }}" data-lightbox="roadtrip">
+                                <img src="{{ item.image.url }}">
+                            </a>
+                        </li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="allcontent">
+                    <ul>
+                        {% for elg in electricalgallery %}
+                            {% for item in elg.gallery.all %}
+                            <li>
+                                <a href="{{ item.image.url }}" data-lightbox="roadtrip">
+                                    <img src="{{ item.image.url }}">
+                                </a>
+                            </li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="residencecontent">
+                    <ul>
+                        {% for h in heating %}
+                            {% for item in h.gallery.all %}
+                            <li>
+                                <a href="{{ item.image.url }}" data-lightbox="roadtrip">
+                                    <img src="{{ item.image.url }}">
+                                </a>
+                            </li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="industriacontent">
+                    <ul>
+                        {% for a in aircond %}
+                            {% for item in a.gallery.all %}
+                            <li>
+                                <a href="{{ item.image.url }}" data-lightbox="roadtrip">
+                                    <img src="{{ item.image.url }}">
+                                </a>
+                            </li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="officecontent">
+                    <ul>
+                        {% for s in securitysystems %}
+                            {% for item in s.gallery.all %}
+                            <li>
+                                <a href="{{ item.image.url }}" data-lightbox="roadtrip">
+                                    <img src="{{ item.image.url }}">
+                                </a>
+                            </li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="objectcontent">
+                    <ul>
+                        {% for el in electrical %}
+                            {% for item in el.gallery.all %}
+                            <li>
+                                <a href="{{ item.image.url }}" data-lightbox="roadtrip">
+                                    <img src="{{ item.image.url }}">
+                                </a>
+                            </li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+{% endblock %}

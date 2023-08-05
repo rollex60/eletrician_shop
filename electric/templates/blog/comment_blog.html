@@ -1,0 +1,18 @@
+{% if status_comment %}
+<div class="alert alert-success">
+      {{ status_comment }}
+</div>
+{% endif %}
+<div class="create__data">{{ item.create_date }}</div>
+<div class="author">{{ item.author }}</div>
+{% if request.user.is_authenticated %}
+Status: {{ item.status }}
+
+     -
+<a class="updated_status" data-url="{% url 'updated_comments_status' item.id 'public' %}" href="#">Publish</a> /
+<a class="updated_status" data-url="{% url 'updated_comments_status' item.id 'delete' %}" href="#">Delete</a>
+
+{% endif %}
+<br><br>
+{{ item.text }}
+<br><br>

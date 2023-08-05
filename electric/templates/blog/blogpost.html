@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load electricity_blog_tags %}
+
+{% block content %}
+<h1>{{blogpost.title}}</h1>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <div class="seo_block">
+            <li class="breadcrumb-item">
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'blog' %}">
+                    Blog
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active">
+                {% if blogpost.pk == blog_selected %}
+                {% else %}
+                    <a href="{{ blogpost.blog.get_absoluted_url }}">{{blogpost.blog.name}}</a>
+                {% endif %}
+                </li>
+
+            <li class="breadcrumb-item active">
+                {{ blogpost.name }}
+            </li>
+        </div>
+    </ol>
+</nav>
+
+<div class="block__blogpost">
+    <div class="blog-block">
+        <div class="blog-sidebar">
+            <div class="search__form__sidebar-blog">
+                <h3>Search</h3>
+                <div class="search__form">
+                    <form action="{% url 'search_resultsblog' %}" method="get">
+
+                        <input name="val" type="search" placeholder="Search" aria-label="Search">
+                        <button type="submit"></button>
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="category_sidebar-blog">
+                <h3>Categories</h3>
+                <div class="blog-cat">
+                    {% if blog_selected == 0 %}
+                    <li><a href="{% url 'blog' %}">All categories</a></li>
+                    {% endif %}
+                    {% show_categories blog_selected=blog_selected %}
+                </div>
+                    </div>
+            <div class="category_sidebar-tags">
+                     <h3>Tags</h3>
+                    <div class="tages">
+                        {% for tag in blogpost.tages.all %}
+                        <div class="tags-blog">
+                            <li class="scale">
+                                <a href="{% url 'tagg' tag.slug %}">
+                                        {{ tag.name }}
+                                </a>
+                            </li>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    </div>
+        </div>
+         </div>
+        {% if blogpost.photo %}
+
+        <div class="block__photo-blog">
+            <img class="img-article-left" src="{{blogpost.photo.url}}" alt="">
+        </div>
+
+        {% endif %}
+        <div class="article-blockpost">
+            <p class="last">{{blogpost.time_update|date:"d M, Y"}}</p>
+                <div class="tags-blog-content">
+                    <p>Tags:</p>
+                    {% for tag in blogpost.tages.all %}
+                    <a href="{% url 'tagg' tag.slug %}">
+                        {{ tag.name }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="block__blog-content">
+            <h1>{{ blogpost.name }}</h1>
+            <div class="author__block">
+                <div class="authors_paragraph">{{ blogpost.authors_paragraph }}</div>
+                <div class="authors_signature">{{ blogpost.authors_signature }}</div>
+            </div>
+
+            <p>{{ blogpost.content|safe }}</p>
+        </div>
+    </div>
+
+<!--related posts-->
+<h2 class="title-related text-2xl mt-12 text-gray-500 font-bold text-center">Similar Posts</h2>
+
+<div class="related-content">
+    <div class="list-related-shop text-center">
+        {% for blog in similar_posts  %}
+
+        <li class="related-panel-shop">
+            {% if blog.photo %}
+            <a href="{{ blog.get_absolute_url }}">
+                <div class="scale"><img src="{{blog.photo.url}}"
+                                        alt=""></div>
+            </a>
+            {% endif %}
+            <h2><a href="{{ blog.get_absolute_url }}">{{blog.name}}</a></h2>
+            {% autoescape on %}
+            {% endautoescape %}
+            <div class="clear"></div>
+            {% empty %}
+             <div class="col-12 text-center">There are no posts related to this one yet.</div>
+            {% endfor %}
+    </div>
+</div>
+<!--end related posts-->
+
+
+    <div class="block__comments">
+        <h3>{{ blogpost.comments_blog.all.count }} Comments</h3>
+        <ul class="main-block__comments">
+            {% for item in blogpost.comments_blog.all %}
+            <li class="li-block__comments">
+                {% include 'blog/comment_blog.html' %}
+                <hr>
+            </li>
+        </ul>
+        {% endfor %}
+        {% if request.user.is_authenticated %}
+        <form action="" id="add_form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button form="add_form" type="submit" class="button__comment"><i class="fa fa-bolt" aria-hidden="true"></i>Submit
+            </button>
+        </form>
+        {% endif %}
+
+    </div>
+
+
+
+
+    {% endblock %}
+    {% block js %}
+    <script>
+        $('body').on('click', '.updated_status', function (event) {
+            event.preventDefault();
+            if (confirm('Are you sure')) {
+                var url = $(this).attr('data-url')
+                var tag_li = $(this).parent()
+                console.log(url)
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function (response) {
+                        tag_li.html(response)
+                        console.log(response)
+                    }
+                })
+            }
+        })
+    </script>
+    {% endblock %}

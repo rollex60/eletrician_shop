@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+{% load electricity_tags %}
+{% block content %}
+<h1>{{shopost.title}}</h1>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <div class="seo_block">
+            <li class="breadcrumb-item">
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'shop' %}">
+                    Shop
+                </a>
+            </li>
+            {% if shop_selected %}
+            <li class="breadcrumb-item active">
+                <a href="{{ shopost.shop.get_absolute_url }}">
+                    {{ shopost.shop }}
+                </a>
+            </li>
+            {% endif %}
+            <li class="breadcrumb-item active">
+                {{ shopost.name }}
+            </li>
+        </div>
+    </ol>
+</nav>
+
+<div class="block__shopost">
+    <div class="block__photo">
+        <div class="scale"><img src="{{ shopost.photo.url }}" alt="" class="scale"></div>
+        <div class="row">
+            {% for item in shopost.image_gallery.all %}
+            <div class="col-lg-3 col-md-8 mb-4 mb-lg-0">
+                <img src="{{ item.image.url }}" class="w-100 shadow-1-strong rounded mb-4">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="block__descript-shop">
+        <div class="block__descript">
+            <h4>{{ shopost.name }}</h4>
+            <div class="descript_price">{{ shopost.price }} €</div>
+            <hr>
+            <span>{{ shopost.main_content|safe }}</span>
+            <hr>
+            <div class="block_stock">
+                <div class="stock">{% if shopost.stock %} <strong class="badge bg-success">
+                    Are available - {{ shopost.stock }} pcs.
+                </strong>
+                    {% else %}
+                    <strong class="badge dg-danger">Not available</strong>{% endif %}
+                </div>
+                <div class="card__bodyes">
+                    {% if request.user.is_authenticated %}
+                    {% if shopost.stock %}
+                    {% if shopost not in cart.products_in_cart %}
+                    <a href="{% url 'add_to_cart' ct_model=shopost.ct_model slug=shopost.slug %}"
+                       class="btn btn-default">
+                        <button href="#" class="button__shop button__shopost"><i class="fas fa-shopping-cart"
+                                                                                 aria-hidden="true"></i>Add to cart
+                        </button>
+                    </a>
+                    {% else %}
+                    <a href="#" class="btn btn-default" disabled="">
+                        <button href="#" class="button__added button__shopost"><i class="fas fa-shopping-cart"
+                                                                                  aria-hidden="true"></i>Added to cart
+                        </button>
+                    </a>
+                    {% endif %}
+                    {% else %}
+                    {% if shopost not in request.user.customer.wishlist.all %}
+                    <a href="{% url 'add_to_wishlist' shop_id=shopost.id %}" class="btn btn-default">
+                        <button href="{% url 'add_to_wishlist' shop_id=shopost.id %}" class="button__expected"><i
+                                class="fas fa-shopping-cart"
+                                aria-hidden="true"></i>Add to expected
+                        </button>
+                    </a>
+                    {% else %}
+                    <a href="#" class="btn btn-default" disabled="">
+                        <button class="button__expected"><i class="fas fa-shopping-cart"
+                                                            aria-hidden="true"></i>Added to expected
+                        </button>
+                    </a>
+                    {% endif %}
+                    {% endif %}
+                    {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-default" disabled="">
+                        <button href="#" class="button__added button__shopost"><i class="fas fa-shopping-cart"
+                                                                                  aria-hidden="true"></i>Login
+                        </button>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="tags-shop-content">
+            <p>Tags:</p>
+                {% for tag in shopost.tags.all %}
+                    <a href="{% url 'tagged' tag.slug %}">
+                        {{ tag.name }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="block__comments">
+    <div class="tabs">
+        <input id="tab1" type="radio" name="tabs" checked>
+        <label for="tab1" title="Tab 1">Description</label>
+
+        <input id="tab2" type="radio" name="tabs">
+        <label for="tab2" title="Tab 2">Comments ({{ shopost.comments_shop.all.count }})</label>
+
+        <section id="content-tab1" class="content__tipe">{{ shopost.content|safe }}</section>
+        <section id="content-tab2">
+            {% if messages %}
+            <div class="alert alert-success">
+                {% for m in messages %}
+                {{m}}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <ul class="main-block__comments">
+                {% for item in shopost.comments_shop.all %}
+                <li class="li-block__comments">
+                    {% include 'shop/comment_shop.html' %}
+                    <hr>
+                </li>
+            </ul>
+            {% endfor %}
+            {% if request.user.is_authenticated %}
+            <form action="" id="add_form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button form="add_form" type="submit" class="button__comment"><i class="fa fa-bolt"
+                                                                                 aria-hidden="true"></i>Submit
+                </button>
+            </form>
+            {% endif %}
+        </section>
+    </div>
+</div>
+
+
+<!--Similar posts-->
+
+<h2 class="title-related text-2xl mt-12 text-gray-500 font-bold text-center">Similar Products</h2>
+
+<div class="related-content">
+    <div class="list-related-shop text-center">
+        {% for shop in similar_posts  %}
+
+        <li class="related-panel-shop">
+            {% if shop.photo %}
+            <a href="{{ shop.get_absolute_url }}">
+                <div class="scale"><img src="{{shop.photo.url}}"
+                                        alt=""></div>
+            </a>
+            {% endif %}
+            <h2><a href="{{ shopost.get_absolute_url }}">{{shop.name}}</a></h2>
+            {% autoescape on %}
+            {% endautoescape %}
+            <div class="clear"></div>
+            <div class="price">${{shop.price}}</div>
+            <div class="card__bodyes">
+                    {% if request.user.is_authenticated %}
+                    {% if shop.stock %}
+                    {% if shop not in cart.products_in_cart %}
+                    <a href="{% url 'add_to_cart' ct_model=shopost.ct_model slug=shopost.slug %}"
+                       class="btn btn-default">
+                        <button href="#" class="button__shop button__shopost"><i class="fas fa-shopping-cart"
+                                                                                 aria-hidden="true"></i>Add to cart
+                        </button>
+                    </a>
+                    {% else %}
+                    <a href="#" class="btn btn-default" disabled="">
+                        <button href="#" class="button__added button__shopost"><i class="fas fa-shopping-cart"
+                                                                                  aria-hidden="true"></i>Added to cart
+                        </button>
+                    </a>
+                    {% endif %}
+                    {% else %}
+                    {% if shop not in request.user.customer.wishlist.all %}
+                    <a href="{% url 'add_to_wishlist' shop_id=shopost.id %}" class="btn btn-default">
+                        <button href="{% url 'add_to_wishlist' shop_id=shopost.id %}" class="button__expected"><i
+                                class="fas fa-shopping-cart"
+                                aria-hidden="true"></i>Add to expected
+                        </button>
+                    </a>
+                    {% else %}
+                    <a href="#" class="btn btn-default" disabled="">
+                        <button class="button__expected"><i class="fas fa-shopping-cart"
+                                                            aria-hidden="true"></i>Added to expected
+                        </button>
+                    </a>
+                    {% endif %}
+                    {% endif %}
+                    {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-default" disabled="">
+                        <button href="#" class="button__added button__shopost"><i class="fas fa-shopping-cart"
+                                                                                  aria-hidden="true"></i>Login
+                        </button>
+                    </a>
+                    {% endif %}
+                </div>
+            {% empty %}
+             <p class="col-12 text-center" style="margin: 0 auto; width: 71rem;">There are no posts related to this one yet.</p>
+            {% endfor %}
+    </div>
+</div>
+
+<!--end Similar posts-->
+
+{% endblock %}
+{% block js %}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    $('body').on('click', '.update_status', function (event) {
+        event.preventDefault();
+        if (confirm('Are you sure')) {
+            var url = $(this).attr('data-url')
+            var tag_li = $(this).parent()
+            console.log(url)
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (response) {
+                    tag_li.html(response)
+                    console.log(response)
+                }
+            })
+        }
+    })
+</script>
+{% endblock %}

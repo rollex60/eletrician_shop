@@ -1,0 +1,7 @@
+{% for s in shop %}
+    {% if s.pk == shop_selected %}
+        <li class="selected"><i class="fa fa-caret-right" aria-hidden="true"></i>{{s.name}}</li>
+    {% else %}
+        <li><a href="{{ s.get_absolute_url }}"><i class="fa fa-caret-right" aria-hidden="true"></i>{{s.name}}</a></li>
+    {% endif %}
+{% endfor %}

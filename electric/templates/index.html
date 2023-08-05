@@ -1,0 +1,761 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<!--Slider Header-->
+<section class="slider">
+    <div class="img1 kart">
+        <img src="{% static 'img/mainslide-01.jpg' %}"/>
+        <div class="discript">
+            <p>keeping you wired</p>
+            <h3>We’re the Current Specialist!</h3>
+        </div>
+    </div>
+    <div class="img2 kart">
+        <img src="{% static 'img/mainslide-02.jpg' %}"/>
+        <div class="discript">
+            <p>making our clients happier</p>
+            <h3>Best Services for Your Family</h3>
+        </div>
+    </div>
+    <div class="img3 kart">
+        <img src="{% static 'img/mainslide-03.jpg' %}"/>
+        <div class="discript">
+            <p>we can light everything</p>
+            <h3>Nothing is Impossible for Us</h3>
+        </div>
+    </div>
+    <div class="img4 kart">
+        <img src="{% static 'img/mainslide-01.jpg' %}"/>
+        <div class="discript">
+            <p>keeping you wired</p>
+            <h3>We’re the Current Specialist!</h3>
+        </div>
+    </div>
+    <div class="img5 kart">
+        <img src="{% static 'img/mainslide-02.jpg' %}"/>
+        <div class="discript">
+            <p>making our clients happier</p>
+            <h3>Best Services for Your Family</h3>
+        </div>
+    </div>
+</section>
+<section class="forma__header">
+    <div class="forma__title-header">Request Service Today</div>
+    <forma>
+        <form action="{% url 'feedback_view' %}" method="post" id="contactform">
+            {% csrf_token %}
+            <div class="submit_group">
+                <div class="getservice__name">
+                    <input name="name" placeholder="Your Name *">
+                </div>
+
+                <div class="getservice__email">
+                    <input name="email" placeholder="Your e-mail *">
+                </div>
+
+                <div class="getservice__phone">
+                    <input id="phone" name="phone" placeholder="Your phone *">
+                </div>
+
+                <div class="getservice__date">
+                    <input type="date" id="date" name="date" placeholder="Date of visit" required>
+                </div>
+
+                <button type="submit" class="getservice">
+                    <i class="fa fa-bolt" aria-hidden="true"></i>Get Service
+                </button>
+            </div>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                <p class="reviews">{{ message }}</p>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </form>
+    </forma>
+</section>
+
+<!-- About Us -->
+<section class="about__us">
+    <div class="about__services">
+        <div class="block__eletric">
+            <img class="aboutus__images1" src="{% static 'images/about/img01.jpg' %}" alt="">
+            <img class="aboutus__images2" src="{% static 'images/about/img02.jpg' %}" alt="">
+        </div>
+        <div class="block__service">
+            <span>About Us</span>
+            <div class="service-title">Outstanding Residential & Commercial Services</div>
+            <p>All of our services are backed by our 100% satisfaction guarantee. Our electricians can install
+                anything from new security lighting for your outdoors to a whole home generator that will keep your
+                appliances working during a power outage.</p>
+            <ul>
+                <li><i class="fa fa-check" aria-hidden="true"></i>Full-service electrical layout, design</li>
+                <li><i class="fa fa-check" aria-hidden="true"></i>Wiring and installation/upgrades</li>
+                <li><i class="fa fa-check" aria-hidden="true"></i>Emergency power solutions (generators)</li>
+                <li><i class="fa fa-check" aria-hidden="true"></i>Virtually any electrical needs you have – just
+                    ask!
+                </li>
+            </ul>
+            <div class="about__autor">
+                <img src="{% static 'images/about/img-02.jpg' %}" alt="">
+                <div class="autor__name">Mark Smith</div>
+                <div class="autor__text">Your own electrician</div>
+                <div class="autor__separation"></div>
+                <div class="autor__painting">
+                    <img src="{% static 'images/about/img-01.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section class="block__services">
+    <div class="block__commercial">
+        <a class="support" tabindex="1">
+            <span class="tip-click"><i class="fa fa-plus" aria-hidden="true"></i></span>
+            <span class="tip comercial">
+              A semana é um período de tempo correspondente
+            a um grupo de sete dias, que é o tempo de duração
+            aproximado de uma fase lunar (¼ de ciclo lunar).
+            Porém, a origem da expressão é mais recente
+            e vem do latim septimana, que significava
+            sete manhãs.
+         </span>
+        </a>
+        <img src="{% static 'images/slideinfo-marker.png' %}" alt="" class="logo__post">
+        <h3>Commercial</h3>
+        <img src="{% static 'images/services/slideinfo-01.jpg' %}" alt="">
+    </div>
+    <div class="block__industrial">
+        <a class="support" tabindex="1">
+            <span class="tip-click"><i class="fa fa-plus" aria-hidden="true"></i></span>
+
+            <span class="tip industrial">
+              A semana é um período de tempo correspondente
+            a um grupo de sete dias, que é o tempo de duração
+            aproximado de uma fase lunar (¼ de ciclo lunar).
+            Porém, a origem da expressão é mais recente
+            e vem do latim septimana, que significava
+            sete manhãs.
+         </span>
+        </a>
+        <img src="{% static 'images/slideinfo-marker.png' %}" alt="" class="logo__post">
+        <h3>Industrial</h3>
+        <img src="{% static 'images/services/slideinfo-02.jpg' %}" alt="">
+    </div>
+    <div class="block__resedencial">
+        <a class="support" tabindex="1">
+            <span class="tip-click"><i class="fa fa-plus" aria-hidden="true"></i></span>
+
+            <span class="tip resedencial">
+              A semana é um período de tempo correspondente
+            a um grupo de sete dias, que é o tempo de duração
+            aproximado de uma fase lunar (¼ de ciclo lunar).
+            Porém, a origem da expressão é mais recente
+            e vem do latim septimana, que significava
+            sete manhãs.
+         </span>
+        </a>
+        <img src="{% static 'images/slideinfo-marker.png' %}" alt="" class="logo__post">
+        <h3>Residential</h3>
+        <img src="{% static 'images/services/slideinfo-03.jpg' %}" alt="">
+    </div>
+</section>
+<div class="post__slider">
+    <div class="slider__5">
+        <a href="#">
+            <div class="moving_poster">
+                <div class="poster1" id="circle circle-build animated"><i class="fa fa-plus-circle"
+                                                                          aria-hidden="true"></i><img
+                        src="{% static 'images/slideinfo-01.jpg' %}" alt="">
+                    <img src="{% static 'images/slideinfo-marker.png' %}" alt="" class="logo__poster">
+                    <h3>Commercial</h3>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="moving_poster">
+                <div class="poster2"><i class="fa fa-plus-circle" aria-hidden="true"></i><img
+                        src="{% static 'images/slideinfo-02.jpg' %}" alt="">
+                    <img src="{% static 'images/slideinfo-marker.png' %}" alt="" class="logo__poster">
+                    <h3>Industrial</h3>
+                </div>
+            </div>
+        </a>
+        <a href="#">
+            <div class="moving_poster">
+                <div class="poster3"><i class="fa fa-plus-circle" aria-hidden="true"></i><img
+                        src="{% static 'images/slideinfo-03.jpg' %}" alt="">
+                    <img src="{% static 'images/slideinfo-marker.png' %}" alt="" class="logo__poster">
+                    <h3>Residential</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- Slider Work -->
+<section class="slider__work">
+    <div class="block__work">
+        <div class="work-title">24/7 Electrician Services – Safe and Efficient</div>
+        <h3>We are a Full Service Electrical Contractor</h3>
+        <div class="body__slider">
+            <div class="slider1">
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="lamp"></div>
+                        <img src="{% static 'images/box02-img01.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Electrical Service</div>
+                        <p>Our installation services ensure that you get the right air conditioner.</p>
+                        <div class="more">More info<i class="fa fa-caret-right" aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="cctv"></div>
+                        <img src="{% static 'images/box02-img04.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Heating Service</div>
+                        <p>We offer energy efficient electric heat products and installations.</p>
+                        <div id="block__slider__more1" class="more">More info<i class="fa fa-caret-right"
+                                                                                aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="conditioning"></div>
+                        <img src="{% static 'images/box02-img03.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Air Conditioning</div>
+                        <p>Our installation services ensure that you get the right air conditioner.</p>
+                        <div id="block__slider__more2" class="more">More info<i class="fa fa-caret-right"
+                                                                                aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="electricalpanel"></div>
+                        <img class="cartinca" src="{% static 'images/box02-img05.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Security Systems</div>
+                        <p>Our installation services ensure that you get the right air conditioner.</p>
+                        <div id="block__slider__more3" class="more">More info<i class="fa fa-caret-right"
+                                                                                aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+            </div>
+
+            <div class="slider__6">
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="lamp"></div>
+                        <img src="{% static 'images/box02-img01.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Electrical Service</div>
+                        <p>Our installation services ensure that you get the right air conditioner.</p>
+                        <div class="more">More info<i class="fa fa-caret-right" aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="cctv"></div>
+                        <img src="{% static 'images/box02-img04.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Heating Service</div>
+                        <p>We offer energy efficient electric heat products and installations.</p>
+                        <div class="more">More info<i class="fa fa-caret-right" aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="conditioning"></div>
+                        <img src="{% static 'images/box02-img03.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Air Conditioning</div>
+                        <p>Our installation services ensure that you get the right air conditioner.</p>
+                        <div class="more">More info<i class="fa fa-caret-right" aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+
+                <div class="block__slider">
+                    <a href="/">
+                        <div class="electricalpanel"></div>
+                        <img class="cartinca" src="{% static 'images/box02-img05.jpg' %}" alt="">
+                        <div class="mask"></div>
+                        <div class="block__slider-title">Security Systems</div>
+                        <p>Our installation services ensure that you get the right air conditioner.</p>
+                        <div class="more">More info<i class="fa fa-caret-right" aria-hidden="true"></i></div>
+
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Electric Help -->
+<section class="electric__help">
+    <div class="block__electric">
+        <div class="maintenance">
+            <div class="maintenance__title">Do you <span>Need Help</span>
+                With Electrical
+                Maintenance?
+            </div>
+            <p>Our electrical repair and service options are proudly offered to clients. Give us a call today to
+                schedule a free service estimate!</p>
+
+            <button id="button__phone" class="call" href="#">Give Us a Call</button>
+            <button onclick="window.location.href = '#win1';" id="button__bolt" class="free">Free Estimate
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Project -->
+<section class="all__project">
+    <span>@eletricista</span>
+    <div class="project-title">Our Projects</div>
+
+    <div id="mynavtabcontent">
+        {% for p in projects %}
+        <input type="radio" name="content-toggle" id="all" class="active"> <label for="all" tabindex="1">All {{p.name}}</label>
+        {% endfor %}
+        {% for r in residences %}
+        <input type="radio" name="content-toggle" id="residence" class="active"> <label for="residence"
+                                                                                        tabindex="2">{{r.name}}</label>
+        {% endfor %}
+        {% for i in industrial %}
+        <input type="radio" name="content-toggle" id="industria"> <label for="industria"
+                                                                         tabindex="3">{{i.name}}</label>
+        {% endfor %}
+        {% for o in offices %}
+        <input type="radio" name="content-toggle" id="office"> <label for="office" tabindex="4">{{o.name}}</label>
+        {% endfor %}
+        {% for r in retail %}
+        <input type="radio" name="content-toggle" id="object"> <label for="object"
+                                                                      tabindex="5">{{r.name}}</label>
+        {% endfor %}
+        <div class="project">
+            <section class="pictures">
+                <div id="def">
+                    <ul>
+                        {% for p in projects %}
+                        {% for item in p.gallery.all %}
+                        <li>
+                            <a href="{{ item.image.url }}" data-lightbox="roadtrip">
+                                <img src="{{ item.image.url }}">
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="allcontent">
+                    <ul>
+                        {% for p in projects %}
+                        {% for item in p.gallery.all %}
+                        <li>
+                            <a href="{{ item.image.url }}" data-lightbox="roadtrip">
+                                <img src="{{ item.image.url }}">
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="residencecontent">
+                    <ul>
+                        {% for r in residences %}
+                        {% for item in r.gallery.all %}
+                        <li>
+                            <a href="{{ item.image.url }}" data-lightbox="roadtrip">
+                                <img src="{{ item.image.url }}">
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="industriacontent">
+                    <ul>
+                        {% for i in industrial %}
+                        {% for item in i.gallery.all %}
+                        <li>
+                            <a href="{{ item.image.url }}" data-lightbox="roadtrip">
+                                <img src="{{ item.image.url }}">
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="officecontent">
+                    <ul>
+                        {% for o in offices %}
+                        {% for item in o.gallery.all %}
+                        <li>
+                            <a href="{{ item.image.url }}" data-lightbox="roadtrip">
+                                <img src="{{ item.image.url }}">
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="objectcontent">
+                    <ul>
+                        {% for r in retail %}
+                        {% for item in r.gallery.all %}
+                        <li>
+                            <a href="{{ item.image.url }}" data-lightbox="roadtrip">
+                                <img src="{{ item.image.url }}">
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<!-- Statistic -->
+<section class="statistic">
+    <div class="section__static">
+        <span>Our Statistics</span>
+        <div class="statistic-title">Some Important Facts</div>
+        <img src="{% static 'images/bg_marker.png' %}" alt="">
+        <div class="resedent__item">
+            <div class="value__resedencial">
+                5000+
+                <div class="resedent-deskription">Residential Projects</div>
+            </div>
+        </div>
+
+        <div class="comercial__item">
+            <div class="value__comercial">
+                1500+
+                <div class="comercial-deskription">Commercial Projects</div>
+            </div>
+        </div>
+
+        <div class="industrial__item">
+            <div class="value__industrial">
+                1000+
+                <div class="industrial-deskription">Industrial Projects</div>
+            </div>
+        </div>
+
+        <div class="stat__img"></div>
+
+        <section class="static__slider">
+            <div class="baza">
+                <div class="slider__2">
+
+                    <div class="moving_slayd">
+                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        <img src="{% static 'images/box03_img02.jpg' %}" alt="">
+
+                        <div class="block__one">
+                            <div class="testemonia">What Our Clients Say</div>
+                            <div class="blocket-title">Professional, Reliable & Cost Effective</div>
+                            <p>We've been using your company and from the very beginning found him and his team to
+                                be extremely professional and knowledgeable . We wouldn't have any hesitation in
+                                recommending their services.</p>
+                            <span>- Teresa and Kevin K.</span>
+                        </div>
+                    </div>
+
+                    <div class="moving_slayd">
+                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        <img src="{% static 'images/box03_img02.jpg' %}" alt="">
+
+                        <div class="block__one">
+                            <div class="testemonia">What Our Clients Say</div>
+                            <div class="blocket-title">Professional, Reliable & Cost Effective</div>
+                            <p>We've been using your company and from the very beginning found him and his team to
+                                be extremely professional and knowledgeable . We wouldn't have any hesitation in
+                                recommending their services.</p>
+                            <span>- Teresa and Kevin K.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat__emergen">
+                    <div class="emergen-title">Emergency Service</div>
+                    <div class="emergen__description">If this is an emergency outside of normal business hours, call
+                        us
+                    </div>
+                    <div class="emergen__tel"><i class="fa fa-phone" aria-hidden="true"></i>1 (800) 765-43-21</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+<!-- Plans -->
+<section class="slider__plans">
+    <span>Save on the Service You Need</span>
+    <h3>Maintenance Plans</h3>
+    <div class="plan-deckriptions">With an electrical maintenance plan, you won’t find yourself in a panic wondering
+        who to call when you’re having problems with your electrical system.
+    </div>
+    <div class="plans">
+        <div class="slider__3">
+            <div class="movingplans">
+                <div class="caza"></div>
+                <div class="plans__block">
+                    <div class="plans-title"> Residential Service</div>
+                    <ul class="plans__clas">
+                        <li><i class="fa fa-check" aria-hidden="true">
+                        </i>Annual A/C inspection
+                        </li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Annual electrical inspection</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Design-Build Services</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Supply and install Sensor light</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Lighting Fixtures</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Replace hot plates</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Switchboard Upgrade</li>
+
+                        <li class="line"></li>
+                    </ul>
+                    <div class="preco"> $12.00</div>
+                    <a href="#" class="order">
+                        Order Now
+                    </a>
+                </div>
+            </div>
+            <div class="movingplans">
+                <div class="quadro"></div>
+                <div class="plans__block">
+                    <div class="plans-title"> Commercial Service</div>
+                    <ul class="plans__clas">
+                        <li><i class="fa fa-check" aria-hidden="true">
+                        </i>Indoor/outdoor Lighting Installation
+                        </li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Appliance & Fixture Installation</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Annual Electrical Inspection</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Ceiling Fan Installation</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>New & Replacement Wiring</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Surge Protection Maintenance</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>24-hour Response</li>
+
+                        <li class="line"></li>
+                    </ul>
+                    <div class="preco"> $89.00</div>
+                    <a href="#" class="order">
+                        Order Now
+                    </a>
+                </div>
+            </div>
+            <div class="movingplans">
+                <div class="postu"></div>
+                <div class="plans__block">
+                    <div class="plans-title"> Industrial Service</div>
+                    <ul class="plans__clas">
+                        <li><i class="fa fa-check" aria-hidden="true">
+                        </i>Annual A/C inspection
+                        </li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Annual electrical inspection</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Install new double power</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Retrofits and Upgrades</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Install double power outside</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Switchboard Upgrade</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Critical Installations</li>
+
+                        <li class="line"></li>
+                    </ul>
+                    <div class="preco"> $130.00</div>
+                    <a href="#" class="order">
+                        Order Now
+                    </a>
+                </div>
+            </div>
+            <div class="movingplans">
+                <div class="quadro"></div>
+                <div class="plans__block">
+                    <div class="plans-title"> Commercial Service</div>
+                    <ul class="plans__clas">
+                        <li><i class="fa fa-check" aria-hidden="true">
+
+                        </i>Indoor/outdoor Lighting Installation
+                        </li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Appliance & Fixture Installation</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Annual Electrical Inspection</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Ceiling Fan Installation</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>New & Replacement Wiring</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Surge Protection Maintenance</li>
+
+                        <li><i class="fa fa-check" aria-hidden="true"></i>24-hour Response</li>
+
+                        <li class="line"></li>
+                    </ul>
+                    <div class="preco"> $89.00</div>
+                    <a href="#" class="order">
+                        Order Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Option -->
+<section class="option">
+    <div class="option__section">
+        <a href="https://www.youtube.com/watch?v=_hHwz1UWJmI" data-youtube-id="_hHwz1UWJmI"
+           class="video-thumb js-trigger-video-modal">
+            <i class="fa fa-play-circle video-banner-img" aria-hidden="true" id="circle"></i>
+        </a>
+        <!-- video modal -->
+        <section class="video-modal">
+            <!-- Modal Content Wrapper -->
+            <div id="video-modal-content" class="video-modal-content">
+                <!-- iframe -->
+                <iframe id="youtube" width="100%" height="100%" frameborder="0" allow="autoplay" allowfullscreen
+                        src=></iframe>
+
+                <a href="#" class="close-video-modal">
+                </a>
+
+            </div><!-- end modal content wrapper -->
+            <!-- clickable overlay element -->
+            <div class="overlay"></div>
+        </section>
+        <!-- end video modal -->
+        <div class="box__deckription">
+            <div class="box__on">
+
+                <div class="box-title">
+                    Your <span>Best Option</span>
+                    in Electrical
+                    Contractors 24/7
+                </div>
+                <p>Our experienced electricians are highly trained in all aspects of electrical service, from office
+                    lighting and security systems to emergency repair.</p>
+            </div>
+            <button class="explore" href="#">
+                <i class="fa fa-bolt" aria-hidden="true"></i>Explore services
+            </button>
+        </div>
+    </div>
+</section>
+
+<main class="main">
+    <div class="news">
+        <div class="marker"></div>
+        <div class="latest__news">
+
+            <span class="latest__cat">Latest News</span>
+            <div class="latest-title">
+                News & Update
+            </div>
+            {% for b in blog %}
+            <div class="postnewsone">
+                <date>{{b.time_update|date:"d M, Y"}}</date>
+                <div class="news-title">
+                    <a href="{{ b.get_absolute_url }}">{{b.name}}</a>
+                </div>
+                {% autoescape on %}
+                <p>{{b.main_content|safe|linebreaks|truncatewords:10}}</p>
+                {% endautoescape %}
+            </div>
+            {% endfor %}
+
+            {% for b in blog %}
+            <div class="right-block">
+                <div class="postnewsthree">
+                    {% if b.photo %}
+                    <img class="img-article-left thumb" src="{{b.photo.url}}" alt="">
+                    {% endif %}
+                    <div class="news__content">
+                        <date>{{b.time_update|date:"d M, Y"}}</date>
+                        <div class="news-title">
+                            <a href="{{ b.get_absolute_url }}">{{b.name}}</a>
+                        </div>
+                        {% autoescape on %}
+                        <p>{{b.main_content|safe|linebreaks|truncatewords:10}}</p>
+                        {% endautoescape %}
+                        <div class="read"><a href="{{ b.get_absolute_url }}">Read More</a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+</main>
+
+<!-- Brands -->
+<section class="brands">
+    <div class="brands__colect">
+        <div class="logo01">
+            <a href="#"><img src="{% static '/images/logo-01.png' %}" alt=""></a>
+        </div>
+
+        <div class="logo02">
+            <a href="#"><img src="{% static 'images/logo-02.png' %}" alt=""></a>
+        </div>
+
+        <div class="logo03">
+            <a href="#"><img src="{% static 'images/logo-03.png' %}" alt=""></a>
+        </div>
+
+        <div class="logo04">
+            <a href="#"><img src="{% static 'images/logo-04.png' %}" alt=""></a>
+        </div>
+
+        <div class="logo05">
+            <a href="#"><img src="{% static 'images/logo-05.png' %}" alt=""></a>
+        </div>
+
+        <div class="logo06">
+            <a href="#"><img src="{% static 'images/logo-06.png' %}" alt=""></a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

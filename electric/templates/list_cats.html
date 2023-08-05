@@ -1,0 +1,31 @@
+{% for b in blog %}
+    {% if b.pk == blog_selected %}
+        <li class="selected"><i class="fa fa-caret-right" aria-hidden="true"></i>{{b.name}}</li>
+    {% else %}
+        <li><a href="{{ b.get_absoluted_url }}"><i class="fa fa-caret-right" aria-hidden="true"></i>{{b.name}}</a></li>
+    {% endif %}
+{% endfor %}
+
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+{% for b in blog %}
+{% for tag in b.tages.all %}
+    {% if tag.pk == tages_selected %}
+        <li class="selected"><i class="fa fa-caret-right" aria-hidden="true"></i>{{tag.name}}</li>
+    {% else %}
+        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>{{tag.name}}</a></li>
+    {% endif %}
+{% endfor %}
+{% endfor %}
+
+
+
+
+<!--{% for b in blog %}-->
+<!-- {% for tag in b.tages.all %}-->
+<!--    {% if tag == b.tages_selected %}-->
+<!--        <li class="selected"><i class="fa fa-caret-right" aria-hidden="true"></i>{{tag.tages}}</li>-->
+<!--    {% else %}-->
+<!--        <li><a href="{{ tag.get_absoluted_url }}"><i class="fa fa-caret-right" aria-hidden="true"></i>{{tag.tages}}</a></li>-->
+<!--    {% endif %}-->
+<!--{% endfor %}-->
+<!--{% endfor %}-->

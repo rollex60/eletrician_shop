@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <div class="seo_block">
+            <li class="breadcrumb-item">
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'shop' %}">
+                    Shop
+                </a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'checkout' %}">
+                    Checkout
+                </a>
+            </li>
+
+        </div>
+    </ol>
+</nav>
+
+<h3 class="text-center cart-title">Checkout</h3>
+<table class="table text-center">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total price</th>
+    </tr>
+    </thead>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <tbody>
+
+    {% for item in cart.products.all %}
+    <tr>
+        <th scope="row">{{ item.content_object.name }}</th>
+        <td class="w-25"><img src="{{ item.content_object.photo.url }}" class="img-fluid"></td>
+        <td>{{ item.content_object.price }} euro.</td>
+        <td>
+            {{ item.qty }} pcs.
+        </td>
+        <td>{{ item.final_price }} euro.</td>
+
+    </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="2"></td>
+        <td>Total:</td>
+        <td>{{ cart.total_products }}</td>
+        <td><strong>{{ cart.final_price }} euro.</strong></td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="row" style="margin-bottom: 5rem; margin-top: 5rem;">
+    <div class="col-md-6 offset-md-3">
+        <h3 class="text-center order-title">Order form</h3>
+        <form action="{% url 'make-order' %}" method="POST">
+            {% csrf_token%}
+            {{ form|crispy }}
+            <button type="submit" class="button__cart-qty"
+                    data-bs-toggle="modal"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>Buy
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
