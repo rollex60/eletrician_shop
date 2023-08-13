@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-%0hl!419*z916vbn9=hjf$^@lwa)bv-&$x21b82+g_0ni&l1!b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -97,20 +97,6 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'OPTIONS': {
-#             'read_default_file': '/path/to/my.cnf',
-#             },
-#         'NAME': 'eletknor_name',
-#         'USER': 'eletknor_user',
-#         'PASSWORD': '12mes1984!@',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -146,28 +132,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static',]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATICFILES_DIRS = []
-
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
-
-# MEDIA_ROOT = '/eletrician-shop/coolsite/media'
-# STATIC_ROOT = '/eletrician-shop/coolsite/static'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = []
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
 
 MY_INFO = 80
 MESSAGE_LEVEL = MY_INFO

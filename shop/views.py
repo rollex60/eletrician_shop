@@ -301,6 +301,7 @@ class ShopDetailView(CartMixin, NotificationsMixin, TagMixin, views.generic.Deta
         page_number = request.GET.get('page')
         shop = paginator.get_page(page_number)
         page_obj = paginator.get_page(page_number)
+        news = Shop.objects.order_by('-name')[:3]
 
         context = {
             "cart": self.cart,
@@ -367,6 +368,7 @@ class SearchResultsView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         val = self.request.GET.get('val')
+        news = Shop.objects.order_by('-name')[:3]
 
         context['search-shop'] = val
         context['menu'] = menu

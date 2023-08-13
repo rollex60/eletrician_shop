@@ -127,8 +127,8 @@ class Provider(models.Model):
         return reverse('provider', kwargs={'provider_slug': self.slug})
 
     class Meta:
-        verbose_name = 'Provider'
-        verbose_name_plural = 'Providers'
+        verbose_name = 'Supplier'
+        verbose_name_plural = 'Suppliers'
         ordering = ['-id']
 
 
