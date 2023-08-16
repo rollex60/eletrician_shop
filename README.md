@@ -1,33 +1,41 @@
-<<<<<<< HEAD
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## Eletrician ##
 
-### What is this repository for? ###
+![Alt text](https://bitbucket.org/django-4/eletrician_shop/raw/6b3ac29fb46028754ca1ce1c13323d6ec2b4466b/media/eletrician.png)
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Blog ##
 
-### How do I get set up? ###
+![Alt text](https://bitbucket.org/django-4/eletrician_shop/raw/6b3ac29fb46028754ca1ce1c13323d6ec2b4466b/media/blog_eletrician.png)
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## Appointment ##
 
-### Contribution guidelines ###
+![Alt text](https://bitbucket.org/django-4/eletrician_shop/raw/6b3ac29fb46028754ca1ce1c13323d6ec2b4466b/media/eletrician_appointment.png)
 
-* Writing tests
-* Code review
-* Other guidelines
+## Shop ##
 
-### Who do I talk to? ###
+![Alt text](https://bitbucket.org/django-4/eletrician_shop/raw/6b3ac29fb46028754ca1ce1c13323d6ec2b4466b/media/eletrician_shop.png)
 
-* Repo owner or admin
-* Other community or team contact
-=======
-# eletrician_shop
->>>>>>> b5ab52a49594ff59df21f399383c7dfa4c65f1d4
+## Cart ##
+
+![Alt text](https://bitbucket.org/django-4/eletrician_shop/raw/6b3ac29fb46028754ca1ce1c13323d6ec2b4466b/media/eletrician_cart.png)
+
+## Checkout ##
+
+![Alt text](https://bitbucket.org/django-4/eletrician_shop/raw/6b3ac29fb46028754ca1ce1c13323d6ec2b4466b/media/eletrician_order.png)
+
+## Orders ##
+
+![Alt text](https://bitbucket.org/django-4/eletrician_shop/raw/6b3ac29fb46028754ca1ce1c13323d6ec2b4466b/media/eletrician_orders.png)
+
+## Products ##
+
+![Alt text](https://bitbucket.org/django-4/eletrician_shop/raw/6b3ac29fb46028754ca1ce1c13323d6ec2b4466b/media/eletrician_products.png)
+
+## Staff ##
+
+![Alt text](https://bitbucket.org/django-4/eletrician_shop/raw/6b3ac29fb46028754ca1ce1c13323d6ec2b4466b/media/eletrician_staff.png)
+
+## Admin ##
+
+![Alt text](https://bitbucket.org/django-4/eletrician_shop/raw/6b3ac29fb46028754ca1ce1c13323d6ec2b4466b/media/eletrician_admin.png)
