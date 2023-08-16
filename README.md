@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # README #
 
 This README would normally document whatever steps are necessary to get your application up and running.
@@ -27,3 +28,6 @@ This README would normally document whatever steps are necessary to get your app
 
 * Repo owner or admin
 * Other community or team contact
+=======
+# eletrician_shop
+>>>>>>> b5ab52a49594ff59df21f399383c7dfa4c65f1d4
