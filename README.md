@@ -2,7 +2,7 @@
 
 ## Eletrician ##
 
-Site about electrician with shop online, blog and image gallery.
+Site about electrician with shop online, blog and image gallery. Registration with three forms, admin, user, supplier. After registration the supplier can add products, name, price and IVA.
 
 ![Alt text](media/eletrician.png)
 
