@@ -2,6 +2,8 @@
 
 ## Eletrician ##
 
+Site about electrician with shop online, blog and image gallery.
+
 ![Alt text](media/eletrician.png)
 
 ## Blog ##
